@@ -6,7 +6,7 @@ public class Modelagem {
 
 	private int total = 0;
 	private ArrayList<Item> itens = new ArrayList<Item>();
-	//private ArrayList<Possibilidade> possibilidades = new ArrayList<Possibilidade>();
+	private ArrayList<Possibilidade> possibilidades = new ArrayList<Possibilidade>();
 	
 	public Modelagem(int total, ArrayList<Item> itens) {
 		this.total = total;
@@ -14,13 +14,13 @@ public class Modelagem {
 	}
 
 	public void criarCortes() {	
+		ordenarItens();
 		for(int i = 0; i<itens.size(); i++) {
 			criarCortes(i, i, total, new HashMap<Integer, Integer>());		
 		}
 	}
 	
 	public void criarCortes(int indiceAtual, int indiceInicial, int desperdicio, HashMap<Integer, Integer> cortes) {
-		//HashMap  key = tamanho   value = quantidade
 		if(desperdicio >= itens.get(indiceAtual).getTamanho()) {
 			adicionarUnidade(indiceAtual, cortes); 
 			desperdicio -= itens.get(indiceAtual).getTamanho();
@@ -35,7 +35,7 @@ public class Modelagem {
 			}
 		}
 		
-		imprimirPossibilidade(cortes, desperdicio); // metodo teste
+		possibilidades.add(new Possibilidade (new HashMap<Integer, Integer>(cortes), desperdicio));
 
 		//verifica se tem outro na frente
 		if(indiceAtual+1 < itens.size()) {
@@ -75,11 +75,13 @@ public class Modelagem {
 		
 	}
 	
-	public void imprimirPossibilidade(HashMap<Integer, Integer> cortes, int desperdicio) {
-		for (Entry<Integer, Integer> entry : cortes.entrySet()) {
-			System.out.print(entry.getValue() + " de " + entry.getKey() + "  ");
+	public void imprimirPossibilidades() {
+		for(Possibilidade x : possibilidades) {
+			for (Entry<Integer, Integer> entry : x.getPossibilidade().entrySet()) {
+				System.out.print(entry.getValue() + " de " + entry.getKey() + "  ");
+			}
+			System.out.println("desperdicio = " + x.getDesperdicio());
 		}
-		System.out.println("desperdicio = " + desperdicio);
 	}
 	
 	public void ordenarItens() {

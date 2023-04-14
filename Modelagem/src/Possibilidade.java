@@ -5,7 +5,7 @@ public class Possibilidade {
     private int desperdicio;
 
     public Possibilidade(HashMap<Integer, Integer> possibilidade, int desperdicio) {
-        this.possibilidade = possibilidade;
+    	this.possibilidade = possibilidade;
         this.desperdicio = desperdicio;
     }
 
