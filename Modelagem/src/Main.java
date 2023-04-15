@@ -27,7 +27,7 @@ public class Main {
             itens.add(item);
         }
 
-        Modelagem mod = new Modelagem(total, itens);
+        CorteUnidimensional c = new CorteUnidimensional(total, itens);
 
         System.out.println("\nItem de corte = " + total);
         
@@ -37,8 +37,16 @@ public class Main {
         }
         System.out.println("\n");
 
-        mod.criarCortes();
-        mod.imprimirPossibilidades();
+        // por enquanto esses metodos estao aqui, mas a ideia é ter um metodo para resolver todo
+        // o problema
+        c.criarCortes();
+        c.imprimirPossibilidades();
+        
+        c.criarFuncaoObjetivo();
+        c.imprimirFuncaoObjetivo();
+        
+        c.criarRestricoes();
+        c.imprimirRestricoes();
 
     }
 
