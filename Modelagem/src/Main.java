@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-       BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
 
         ArrayList<Item> itens = new ArrayList<Item>();
 
@@ -16,14 +16,14 @@ public class Main {
         System.out.println("Digite quantidade de itens:");
         int n = Integer.parseInt(entrada.readLine());
 
-        String k[];
+        String y[];
         
         for(int i = 0; i<n; i++) {
             Item item = new Item();
             System.out.printf("Digite o tamanho e a demanda do item %d:%n", i+1);
-            k = entrada.readLine().split(" ");
-            item.setTamanho(Integer.parseInt(k[0]));
-            item.setDemanda(Integer.parseInt(k[1]));
+            y = entrada.readLine().split(" ");
+            item.setTamanho(Integer.parseInt(y[0]));
+            item.setDemanda(Integer.parseInt(y[1]));
             itens.add(item);
         }
 
@@ -36,7 +36,18 @@ public class Main {
             System.out.printf("  %d          %d           %d%n", i+1, itens.get(i).getDemanda(), itens.get(i).getTamanho());
         }
         System.out.println("\n");
-        c.resolverProblema();
+
+        // por enquanto esses metodos estao aqui, mas a ideia é ter um metodo para resolver todo
+        // o problema
+        c.criarCortes();
+        c.imprimirPossibilidades();
+        
+        c.criarFuncaoObjetivo();
+        c.imprimirFuncaoObjetivo();
+        
+        c.criarRestricoes();
+        c.imprimirRestricoes();
+
     }
 
 }
